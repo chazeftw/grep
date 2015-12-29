@@ -10,28 +10,28 @@ namespace grep
     {
         static void Main(string[] args)
         {
+            string resourceName = @"C:\Users\chaze\Desktop\grep.txt";
+            int counter = 1;
 
-            // Read each line of the file into a string array. Each element
-            // of the array is one line of the file.
-            string[] lines = System.IO.File.ReadAllLines(@"C:\Users\chaze\Desktop\grep.txt");
+            // All lines stored in an array
+            string[] lines = System.IO.File.ReadAllLines(resourceName);
+            
+            // Text/word to find
+            string text = Console.ReadLine().ToLower();
 
-            string text = Console.ReadLine();
+            Console.WriteLine("$ grab from " + resourceName);
 
-            // Display the file contents by using a foreach loop.
             Console.WriteLine("The word " + text + " is found on the following lines:");
             foreach (string line in lines)
             {
-                // Use a tab to indent each line of the file.
-                if(line.IndexOf(text) != -1)
-                {
-                    Console.WriteLine("\t" + (line.IndexOf(text)+1));
-                }
+                if (line.ToLower().Contains(text))
+                    Console.WriteLine("\t" + counter + ": " + line);
+
+                counter++;
             }
 
-            // Keep the console window open in debug mode.
             Console.WriteLine("Press any key to exit.");
             Console.ReadKey();
-
         }
     }
 }
